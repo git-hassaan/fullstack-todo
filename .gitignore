@@ -1,0 +1,45 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+### Dependencies ###
+node_modules/
+client/node_modules/
+.pnp               # Yarn PnP files
+.pnp.js
+.yarn/cache        # Yarn cache
+.yarn/unplugged    # Yarn unplugged dependencies
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+### Build & Runtime ###
+/build             # React/Vite production build
+/dist              # Common output folder (if used)
+.cache/           # Bundler cache (Vite/Webpack)
+.turbo             # Turborepo cache
+
+### Environment ###
+.env               # All .env files (universal)
+.env.local         # Local overrides
+.env.*.local       # Environment-specific locals
+.secret*           # Catch-all for sensitive files
+
+### Logs ###
+*.log              # All log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+### Testing ###
+/coverage          # Test coverage reports
+.nyc_output        # Istanbul coverage output
+
+### Editor & OS ###
+.DS_Store          # macOS
+.thumbs.db         # Windows
+.idea/             # JetBrains IDEs
+.vscode/           # VSCode settings (optional)
+*.swp              # Vim swap files
+
+### Misc ###
+*.bak              # Backup files
+~$*                # Temporary office files
