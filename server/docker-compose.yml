@@ -1,0 +1,27 @@
+services:
+  mongodb:
+    image: mongo:6.0.1
+    container_name: me_mongo_db
+    ports:
+      - target: 27017
+        published: 27018
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2048M
+    volumes:
+      - ~/me-data/mongodb-data:/data/db
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=mongo_root
+    #   - MONGO_INITDB_ROOT_PASSWORD=S3cret@8787dd
+    networks:
+      - marseditor-network
+
+networks:
+  marseditor-network:
+    driver: bridge
+
+volumes:
+  mercure_data:
+  mercure_config:
