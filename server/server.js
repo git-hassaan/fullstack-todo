@@ -1,14 +1,34 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const todoRoutes = require('./routes/todoRoutes');
+const todoRoutes = require('./routes/todo');
+require('dotenv').config();
 
 const app = express();
-app.use(express.json());
-app.use('/api/todos', todoRoutes);
 
-mongoose.connect('mongodb://localhost:27017/todoDB')
-    .then(() => {
-        console.log('MongoDB connected');
-        app.listen(3001, () => console.log('Server running on port 3001'));
-    })
-    .catch(err => console.error(err));
+// Middleware
+app.use(express.json());
+
+// Routes
+app.use('/api/todo', todoRoutes);
+
+// MongoDB Connection
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        alert('MongoDB connected successfully');
+    } catch (error) {
+        console.error('MongoDB connection error:', error);
+        process.exit(1); // Exit process with failure
+    }
+};
+
+// Start server only after MongoDB connection is established
+connectDB().then(() => {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+});
