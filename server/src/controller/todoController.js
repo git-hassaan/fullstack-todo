@@ -26,6 +26,7 @@ const getTodos = async (req, res, next) => {
 // Create todo (with validation)
 const createTodo = async (req, res, next) => {
     try {
+        console.log("req.body: ", req.body)
         if (!req.body.title) {
             return res.status(400).json({
                 success: false,
@@ -35,7 +36,7 @@ const createTodo = async (req, res, next) => {
 
         const newTodo = await Todo.create({
             ...req.body,
-            user: req.user.id // From auth middleware
+            // user: req.user.id // From auth middleware
         });
 
         res.status(201).json({
